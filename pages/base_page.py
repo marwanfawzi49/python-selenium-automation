@@ -5,7 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 class Page:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, timeout=10)
+        self.wait = WebDriverWait(self.driver, timeout=15)
+
 
     def open_url(self, url):
         self.driver.get(url)
