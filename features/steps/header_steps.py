@@ -6,7 +6,7 @@ from time import sleep
 
 CART_ICON = (By.CSS_SELECTOR, '[data-test="@web/CartLink"]')
 HEADER_LINKS = (By.CSS_SELECTOR, '[data-test*="@web/GlobalHeader/UtilityHeader/"]')
-
+TARGET_CIRCLE_HEADER = (By.CSS_SELECTOR, '[data-test="@web/Circle/PageTitle"]')
 
 @when('Search for {search_word}')
 def search_product(context, search_word):
@@ -19,7 +19,14 @@ def search_product(context, search_word):
 
 @when('Click on Cart icon')
 def click_cart(context):
-    context.driver.find_element(*CART_ICON).click()
+    context.app.header.click_cart()
+
+@when('Click on 1st header link')
+def click_1st_link(context):
+    element = context.driver.find_element(*HEADER_LINKS)
+    #context.driver.refresh()
+    element.click()
+
 
 
 @then('Verify header has {expected_amount} links')
@@ -29,7 +36,7 @@ def verify_header_link_count(context, expected_amount):
     print(f'Links {links}')
     assert len(links) == expected_amount, f'Expected {expected_amount} links but got {len(links)}'
 
-#
-@then('Verify header has links')
+
+@then('Verify Target circle opens')
 def verify_header_link_count(context):
-     context.driver.find_element(*HEADER_LINKS)
+     context.driver.find_element(*TARGET_CIRCLE_HEADER)
