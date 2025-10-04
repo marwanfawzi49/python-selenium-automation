@@ -26,3 +26,9 @@ class Header(Page):
     def click_account(self):
         # wait for the Account icon to be clickable, then click
         self.wait.until(EC.element_to_be_clickable(self.ACCOUNT_ICON)).click()
+
+    def search_product(self, search_word):
+        self.input_text(search_word, *self.SEARCH_FIELD)
+        self.click(*self.SEARCH_BTN)
+        self.wait_until_clickable_click(*self.SEARCH_BTN)
+        sleep(9)
